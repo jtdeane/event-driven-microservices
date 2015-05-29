@@ -1,0 +1,14 @@
+{
+  "resourceType": "Encounter",
+  "id": "EMR56788",
+  "text": {
+    "status": "generated",
+    "div": "Patient admitted with chest pains</div>"
+  },
+  "status": "in-progress",
+  "class": "inpatient",
+  "patient": {
+    "reference": "Patient/P12345",
+    "display": "Roy Batty"
+  }
+}

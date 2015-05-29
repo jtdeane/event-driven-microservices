@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- Scan for Camel Routes -->        
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring"> 
+        <packageScan>
+           <package>ws.cogito.microservices</package>
+        </packageScan> 
+    </camelContext>
+    
+	 <!-- ActiveMQ without Connection Pool    
+	 <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+	    <property name="brokerURL" value="tcp://localhost:61616"/>
+	 </bean>--> 
+    
+    <!-- AciveMQ with Connection Pool -->
+	<bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+	   <property name="brokerURL" value="failover:(tcp://localhost:61616)?randomize=false" />
+	</bean>
+	 
+	<bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" 
+	   init-method="start" destroy-method="stop">
+	   <property name="maxConnections" value="10" />
+	   <property name="connectionFactory" ref="jmsConnectionFactory" />
+	</bean>
+	 
+	<bean id="jmsConfig" class="org.apache.camel.component.jms.JmsConfiguration">
+	   <property name="connectionFactory" ref="pooledConnectionFactory"/>
+	   <property name="concurrentConsumers" value="5"/>
+       <property name="requestTimeout" value="10000" />  
+	</bean>
+	 
+	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+	    <property name="configuration" ref="jmsConfig"/>
+	</bean>
+     	                           
+</beans>

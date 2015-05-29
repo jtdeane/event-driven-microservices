@@ -1,0 +1,6 @@
+#ignored files
+.classpath
+.project
+.settings/
+target/
+.DS_Store
