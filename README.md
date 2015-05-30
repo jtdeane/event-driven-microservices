@@ -5,6 +5,7 @@ Requires ActiveMQ listening on tcp://localhost:61616
 
 1) Build all the sub-projects - mvn clean install
 
+- event-common
 - event-test-harness
 - event-ingestion
 - event-auditing
