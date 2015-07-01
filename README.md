@@ -23,9 +23,13 @@ Requires ActiveMQ listening on tcp://localhost:61616
 
 cd event-test-harness/target
 
-- java -jar event-client-1.0.0.jar Leon
-- java -jar event-client-1.0.0.jar Roy
-- java -jar event-client-1.0.0.jar Eldon
+java -jar event-client-1.0.0.jar Leon
+java -jar event-client-1.0.0.jar Roy
+java -jar event-client-1.0.0.jar Eldon
+
+or start JMeter and run test suite
+
+..event-ingestion/src/test/jmeter/Camel Mock Publisher
 
 
 4) View Results in ActiveMQ Console - http://localhost:8161/admin
