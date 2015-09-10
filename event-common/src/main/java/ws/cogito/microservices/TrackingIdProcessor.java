@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
  */
 public class TrackingIdProcessor implements Processor {
 	
+	public static final String trackingId = "TrackingID";
+	
 	private static final Logger logger = LoggerFactory.getLogger
 			(TrackingIdProcessor.class);	
   
@@ -23,16 +25,16 @@ public class TrackingIdProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		
 		
-		if (exchange.getIn().getHeader("TrackingID") != null) {
+		if (exchange.getIn().getHeader(trackingId) != null) {
 			
 			logger.info("Existing Tracking ID: " + 
-					exchange.getIn().getHeader("TrackingID"));
+					exchange.getIn().getHeader(trackingId));
 			
 		} else {
 			
 			String uuid = UUID.randomUUID().toString();
 			
-			exchange.getIn().setHeader("TrackingID", uuid);
+			exchange.getIn().setHeader(trackingId, uuid);
 			
 			logger.info("Created Tracking ID: " + uuid);
 		}
