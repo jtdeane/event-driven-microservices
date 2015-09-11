@@ -2,8 +2,6 @@ package ws.cogito.microservices;
 
 import java.util.UUID;
 
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 
 
@@ -25,12 +23,10 @@ public class EventCareManagementRouteBuilder extends RouteBuilder {
     	 */
     	from("activemq:event.inpatient").
     	process(new TrackingIdProcessor()).
-    	process(new Processor() {
-    		public void process(Exchange exchange) {
-    			String uuid = UUID.randomUUID().toString();
-    			exchange.getIn().setHeader("CareManagementID", uuid);
-    		}
-    	}).
+    	process((exchange) -> {
+			String uuid = UUID.randomUUID().toString();
+			exchange.getIn().setHeader("CareManagementID", uuid);
+		}).
     	to("activemq:event.care.tasks");   	
     }
 }
