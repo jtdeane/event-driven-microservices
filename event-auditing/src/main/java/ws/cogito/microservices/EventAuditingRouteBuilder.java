@@ -20,8 +20,8 @@ public class EventAuditingRouteBuilder extends RouteBuilder {
     	 * Audit Storage (Mock) - Normally would use something like Elasticsearch
     	 */
     	from("activemq:event.audit").
-    		process(new TrackingIdProcessor()).
-    		wireTap("activemq:event.cep").
-    		to("file:target/events?fileName=event-${in.header.TrackingID}.json");
+		process(new TrackingIdProcessor()).
+		wireTap("activemq:event.cep").
+		to("file:target/events?fileName=event-${in.header.TrackingID}.json");
     }
 }

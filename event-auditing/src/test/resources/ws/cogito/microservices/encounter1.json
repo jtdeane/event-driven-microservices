@@ -1,0 +1,14 @@
+{
+  "resourceType": "Encounter",
+  "id": "EMR56789",
+  "text": {
+    "status": "generated",
+    "div": "Nose bleading and headaches</div>"
+  },
+  "status": "in-progress",
+  "class": "outpatient",
+  "patient": {
+    "reference": "Patient/P45678",
+    "display": "Leon Kowalski"
+  }
+}
