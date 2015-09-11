@@ -12,14 +12,15 @@ public class EventCareManagementRouteBuilder extends RouteBuilder {
 
     public void configure() {
     	
-    	/**
+    	/*
     	 * Route errors to DLQ after one retry and one second delay
     	 */
     	errorHandler(deadLetterChannel("activemq:event.care.dlq").
     			maximumRedeliveries(1).redeliveryDelay(1000));
     	
-    	/**
+    	/*
     	 * Enrichment - assign Care Management ID and route to task queue
+    	 * http://camel.apache.org/maven/camel-2.15.0/camel-core/apidocs/org/apache/camel/Processor.html
     	 */
     	from("activemq:event.inpatient").
     	process(new TrackingIdProcessor()).
