@@ -22,7 +22,7 @@ public class EventIngestionRouteBuilder extends RouteBuilder {
     	from("activemq:event.ingestion").
     	process(new TrackingIdProcessor()).
     	choice().
-    		when().simple("${in.body} contains 'inpatient'").
+    		when().jsonpath("$[?(@.class==inpatient)]").
     			to("activemq:event.inpatient").
     		otherwise().
     			to("activemq:event.outpatient").

@@ -22,7 +22,7 @@ public class EventIngestionRouteBuilderTest extends CamelTestSupport {
 			public void configure() {
 		    	
 		    	from("direct:ingestion").
-		    	log(LoggingLevel.DEBUG, "Order ${body}").
+		    	log(LoggingLevel.DEBUG, "Event ${body}").
 		    	process(new TrackingIdProcessor()).
 		    	choice().
 		    		when().jsonpath("$[?(@.class==inpatient)]").
