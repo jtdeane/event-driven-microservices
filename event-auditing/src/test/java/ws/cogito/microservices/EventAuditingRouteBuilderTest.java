@@ -1,8 +1,6 @@
 package ws.cogito.microservices;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
