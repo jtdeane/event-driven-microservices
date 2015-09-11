@@ -10,14 +10,15 @@ public class EventIngestionRouteBuilder extends RouteBuilder {
 
     public void configure() {
     	
-    	/**
+    	/*
     	 * Route errors to DLQ after one retry and one second delay
     	 */
     	errorHandler(deadLetterChannel("activemq:event.ingestion.dlq").
     			maximumRedeliveries(1).redeliveryDelay(1000));
     	
-    	/**
+    	/*
     	 * Content Based Routing - Inpatient-Outpatient Events
+    	 * http://camel.apache.org/jsonpath.html
     	 */
     	from("activemq:event.ingestion").
     	process(new TrackingIdProcessor()).
