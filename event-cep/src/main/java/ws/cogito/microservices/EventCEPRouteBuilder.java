@@ -3,8 +3,6 @@ package ws.cogito.microservices;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 
 import com.jayway.jsonpath.JsonPath;
@@ -31,8 +29,7 @@ public class EventCEPRouteBuilder extends RouteBuilder {
     	 */
     	from("activemq:event.cep").
     	process(new TrackingIdProcessor()).
-    	process(new Processor() {
-    		public void process(Exchange exchange) {
+    	process(exchange -> {
     			
     			String json = (String) exchange.getIn().getBody();
     			String patient = JsonPath.read(json,"$.patient.display");
@@ -42,7 +39,6 @@ public class EventCEPRouteBuilder extends RouteBuilder {
     			} else {
     				exchange.getIn().setHeader("Fraud", "false");
     			}
-    		}
     	}).
     	choice().
 			when().simple("${in.header.Fraud} contains 'true'").

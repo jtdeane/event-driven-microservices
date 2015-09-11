@@ -1,0 +1,14 @@
+{
+  "resourceType": "Encounter",
+  "id": "EMR56799",
+  "text": {
+    "status": "generated",
+    "div": "Patient admitted with massive headache</div>"
+  },
+  "status": "in-progress",
+  "class": "outpatient",
+  "patient": {
+    "reference": "Patient/99999",
+    "display": "Eldon Tyrell"
+  }
+}
