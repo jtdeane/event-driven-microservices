@@ -18,14 +18,16 @@ public class EventCEPRouteBuilder extends RouteBuilder {
 
     public void configure() {
     	
-    	/**
+    	/*
     	 * Route errors to DLQ after one retry and one second delay
     	 */
     	errorHandler(deadLetterChannel("activemq:event.care.dlq").
     			maximumRedeliveries(1).redeliveryDelay(1000));
     	
-    	/**
+    	/*
     	 * Complex Event Processing (CEP) - Check fradulent paitent list
+    	 * https://github.com/jayway/JsonPath
+    	 * http://camel.apache.org/maven/camel-2.15.0/camel-core/apidocs/org/apache/camel/Processor.html
     	 */
     	from("activemq:event.cep").
     	process(new TrackingIdProcessor()).
