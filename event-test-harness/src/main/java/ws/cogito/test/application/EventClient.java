@@ -3,9 +3,6 @@ package ws.cogito.test.application;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
 import javax.jms.TextMessage;
 
 import org.slf4j.Logger;
@@ -13,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessageCreator;
 
 /**
  * Event-driven Microservices Article
@@ -71,21 +67,21 @@ public final class EventClient {
 		
 		JmsTemplate jmsTemplate = (JmsTemplate) context.getBean("jmsQueueTemplate");
 		
-		jmsTemplate.send(new MessageCreator() {
-
-            public Message createMessage(Session session) throws JMSException {
-
-                TextMessage message = null;
-                
-            	message = session.createTextMessage
-						(getJSONFromFile("encounter1.json"));
+		/*
+		 * http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/jms/core/MessageCreator.html
+		 */
+		jmsTemplate.send(session -> {
 			
-				message.setStringProperty("Mime Type", "application/json");
-                
-                return message;
-            }
-
-        });
+			TextMessage message = null;
+            
+        	message = session.createTextMessage
+					(getJSONFromFile("encounter1.json"));
+		
+			message.setStringProperty("Mime Type", "application/json");
+            
+            return message;
+			
+		});
 		
 		logger.debug("Check: http://localhost:8161/admin/queues.jsp");
 	}
@@ -97,22 +93,22 @@ public final class EventClient {
 	private static void sendEncounter2(ApplicationContext context) {
 		
 		JmsTemplate jmsTemplate = (JmsTemplate) context.getBean("jmsQueueTemplate");
-		
-		jmsTemplate.send(new MessageCreator() {
 
-            public Message createMessage(Session session) throws JMSException {
-
-                TextMessage message = null;
-                
-            	message = session.createTextMessage
-						(getJSONFromFile("encounter2.json"));
+		/*
+		 * http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/jms/core/MessageCreator.html
+		 */
+		jmsTemplate.send(session -> {
 			
-				message.setStringProperty("Mime Type", "application/json");
-                
-                return message;
-            }
-
-        });
+			TextMessage message = null;
+            
+        	message = session.createTextMessage
+					(getJSONFromFile("encounter2.json"));
+		
+			message.setStringProperty("Mime Type", "application/json");
+            
+            return message;
+			
+		});
 		
 		logger.debug("Check: http://localhost:8161/admin/queues.jsp");
 	}
@@ -124,22 +120,22 @@ public final class EventClient {
 	private static void sendEncounter3(ApplicationContext context) {
 		
 		JmsTemplate jmsTemplate = (JmsTemplate) context.getBean("jmsQueueTemplate");
-		
-		jmsTemplate.send(new MessageCreator() {
 
-            public Message createMessage(Session session) throws JMSException {
-
-                TextMessage message = null;
-                
-            	message = session.createTextMessage
-						(getJSONFromFile("encounter3.json"));
+		/*
+		 * http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/jms/core/MessageCreator.html
+		 */
+		jmsTemplate.send(session -> {
 			
-				message.setStringProperty("Mime Type", "application/json");
-                
-                return message;
-            }
-
-        });
+			TextMessage message = null;
+            
+        	message = session.createTextMessage
+					(getJSONFromFile("encounter3.json"));
+		
+			message.setStringProperty("Mime Type", "application/json");
+            
+            return message;
+			
+		});
 		
 		logger.debug("Check: http://localhost:8161/admin/queues.jsp");
 	}
@@ -152,14 +148,12 @@ public final class EventClient {
     private static String getJSONFromFile(String fileName) {
         String json = null;
         StringBuffer text = new StringBuffer();
-        BufferedReader in = null;
         String line = null;
         
-        try {
+        try (BufferedReader in = new BufferedReader
+        		(new InputStreamReader(EventClient.class
+                .getResourceAsStream(fileName)))) {
         	
-            in = new BufferedReader(new InputStreamReader(EventClient.class
-                    .getResourceAsStream(fileName)));
-
             while ((line = in.readLine()) != null) {
                 text.append(line);
             }
