@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.2.5.RELEASE</version>
+        <relativePath/>
+    </parent>	
+
+
+	<!-- =========================Project Details=========================== -->
+	<description>Mock-SAAS</description>
+	<groupId>ws.cogito.test</groupId>
+	<artifactId>mock-saas</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+    <properties>
+        <java-version>1.8</java-version>
+        <spring.version>4.2.1.RELEASE</spring.version>
+        <spring.boot.version>1.2.5.RELEASE</spring.boot.version>      
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>      
+    </properties>
+
+	<!-- ==========================Dependencies============================= -->
+	<dependencies>
+
+        <!-- spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.boot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- logging -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+                
+        <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>1.7.12</version>
+        </dependency>
+        
+        <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+          <version>1.7.12</version>
+        </dependency>
+        
+        <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <version>1.2.17</version>
+        </dependency>
+
+	</dependencies>
+
+	<!-- ===========Local and Central Reporitory Locations================== -->
+	<repositories>
+
+		<repository>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+
+	</repositories>
+
+
+	<!-- ======================Build Time Settings========================== -->
+	<build>
+		<plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>                               
+            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<useProjectReferences>false</useProjectReferences>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- ============================Developers============================= -->
+	<developers>
+		<developer>
+			<id>12456789</id>
+			<name>Jeremy Deane</name>
+			<email>jeremy.deane@gmail.com</email>
+			<organizationUrl>http://www.jeremydeane.net</organizationUrl>
+			<properties>
+				<phone>123-435-2345</phone>
+			</properties>
+		</developer>
+	</developers>
+</project>
