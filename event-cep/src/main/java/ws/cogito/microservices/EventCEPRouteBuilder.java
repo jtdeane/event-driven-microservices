@@ -44,6 +44,7 @@ public class EventCEPRouteBuilder extends RouteBuilder {
     	}).
     	choice().
 			when().simple("${in.header.Fraud} contains 'true'").
+				log("FRAUD ALERT").
 				to("activemq:topic:event.fraud.alert").
 			otherwise().
 				log("...off into the ether");   	
