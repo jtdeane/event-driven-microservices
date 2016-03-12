@@ -23,9 +23,9 @@ Requires ActiveMQ listening on tcp://localhost:61616
 
 cd event-test-harness/target
 
-java -jar event-client-1.0.0.jar Leon
-java -jar event-client-1.0.0.jar Roy
-java -jar event-client-1.0.0.jar Eldon
+java -jar event-client-1.0.1.jar Leon
+java -jar event-client-1.0.1.jar Roy
+java -jar event-client-1.0.1.jar Eldon
 
 or start JMeter and run test suite
 
