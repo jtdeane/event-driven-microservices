@@ -1,6 +1,7 @@
 package ws.cogito.microservices;
 
 import org.apache.camel.Exchange;
+import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 
 

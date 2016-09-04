@@ -14,7 +14,9 @@ public class EventIngestionRouteBuilderTest extends CamelTestSupport {
 	@Override
 	protected CamelContext createCamelContext() throws Exception {
 		
-		CamelContext context = super.createCamelContext();	
+		CamelContext context = super.createCamelContext();
+		
+		context.setUseMDCLogging(true);
 
 		//setup routes to Mock Endpoints
 		context.addRoutes(new RouteBuilder() {

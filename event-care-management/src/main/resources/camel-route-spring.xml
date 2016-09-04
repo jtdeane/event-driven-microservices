@@ -22,7 +22,7 @@
 	   <property name="brokerURL" value="failover:(tcp://localhost:61616)?randomize=false" />
 	</bean>
 	 
-	<bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" 
+	<bean primary="true" id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" 
 	   init-method="start" destroy-method="stop">
 	   <property name="maxConnections" value="10" />
 	   <property name="connectionFactory" ref="jmsConnectionFactory" />
