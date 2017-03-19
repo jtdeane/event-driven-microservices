@@ -1,7 +1,7 @@
 event-cep-router
 =======================
 
-Built with Java 8+, Apache Camel (2.17.3) and Spring Boot (1.4.0.RELEASE)
+Built with Java 8+, Apache Camel (2.18.3) and Spring Boot (1.5.2.RELEASE)
 
 Tested with JUnit (4.11)
 
