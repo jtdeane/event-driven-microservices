@@ -13,7 +13,7 @@ Both require building the project first
 
 `mvn clean install`
 
-###Docker Execution
+### Docker Execution
 
 Start Docker
 
@@ -32,7 +32,7 @@ View Hawtio
 `http://localhost:8090/hawtio/welcome`
 
 
-###Spring-Boot Execution
+### Spring-Boot Execution
 
 Executes with Spring Boot
 
