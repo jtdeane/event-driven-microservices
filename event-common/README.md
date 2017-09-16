@@ -1,7 +1,7 @@
 event-common
 =======================
 
-Built with Java 8+ and Apache Camel (2.18.3)
+Built with Java 8+ and Apache Camel (2.19.2)
 
 Tested with JUnit (4.11)
 

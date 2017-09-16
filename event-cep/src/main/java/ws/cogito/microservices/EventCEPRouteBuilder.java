@@ -3,7 +3,9 @@ package ws.cogito.microservices;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.stereotype.Component;
 
 import com.jayway.jsonpath.JsonPath;
 
@@ -11,7 +13,8 @@ import com.jayway.jsonpath.JsonPath;
 /**
  * Event Complext Event Processing Route Builder
  */
-public class EventCEPRouteBuilder extends RouteBuilder {
+@Component
+public class EventCEPRouteBuilder extends RouteBuilder implements RoutesBuilder {
 	
 	static final List<String> patients = Arrays.asList
 			("Rick Deckard","Hannibal Chew", "Eldon Tyrell");

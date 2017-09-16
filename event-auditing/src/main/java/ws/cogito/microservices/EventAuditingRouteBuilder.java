@@ -1,12 +1,15 @@
 package ws.cogito.microservices;
 
+import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.stereotype.Component;
 
 
 /**
  * Event Auditing Route Builder
  */
-public class EventAuditingRouteBuilder extends RouteBuilder {
+@Component
+public class EventAuditingRouteBuilder extends RouteBuilder implements RoutesBuilder {
 
     public void configure() {
     	

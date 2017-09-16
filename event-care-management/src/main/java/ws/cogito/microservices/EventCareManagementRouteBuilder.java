@@ -2,13 +2,16 @@ package ws.cogito.microservices;
 
 import java.util.UUID;
 
+import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.stereotype.Component;
 
 
 /**
  * Event Care Management Route Builder
  */
-public class EventCareManagementRouteBuilder extends RouteBuilder {
+@Component
+public class EventCareManagementRouteBuilder extends RouteBuilder implements RoutesBuilder {
 
     public void configure() {
     	

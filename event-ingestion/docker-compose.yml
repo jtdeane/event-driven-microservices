@@ -1,0 +1,22 @@
+version: '3'
+services:
+  event-ingestion:
+    build: .
+    hostname: event-ingestion
+    environment:
+     - JAVA_OPTS=-Xmx256m -Xms128m
+    ports:
+     - "9001:9001"
+    depends_on:
+     - "event-broker"
+  event-broker:
+    hostname: event-broker
+    image: "rmohr/activemq:5.14.3-alpine"
+    ports:
+     - "61616:61616"
+     - "8161:8161"
+  hawtio:
+    hostname: event-ops
+    image: "indigo/hawtio"
+    ports:
+     - "8090:8090"       

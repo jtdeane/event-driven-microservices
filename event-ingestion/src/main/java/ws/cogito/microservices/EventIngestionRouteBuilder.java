@@ -3,12 +3,15 @@ package ws.cogito.microservices;
 import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.stereotype.Component;
+import org.apache.camel.RoutesBuilder;
 
 
 /**
  * Event Ingestion Route Builder
  */
-public class EventIngestionRouteBuilder extends RouteBuilder {
+@Component
+public class EventIngestionRouteBuilder extends RouteBuilder implements RoutesBuilder {
 
     public void configure() {
     	

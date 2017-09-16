@@ -7,13 +7,13 @@
     <groupId>ws.cogito.microservices</groupId>
     <artifactId>event-common</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
 
     <name>Cogito</name>
     <url>http://www.cogito.ws</url>
 
     <properties>
-        <camel.version>2.18.3</camel.version>
+        <camel.version>2.19.2</camel.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>

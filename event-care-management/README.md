@@ -1,9 +1,38 @@
 event-care-router
 =======================
 
-Built with Java 8+, Apache Camel (2.18.3) and Spring Boot (1.5.2.RELEASE)
+Built with Java 8+, Apache Camel (2.19.2) and Spring Boot (1.5.6.RELEASE)
 
 Tested with JUnit (4.11)
+
+Execution
+* Spring-boot, assumes ActiveMQ is running locally
+* Docker (w/ Compose) - also starts up ActiveMQ and Hawtio
+
+Both require building the project first
+
+`mvn clean install`
+
+###Docker Execution
+
+Start Docker
+
+`docker-compose up`
+
+View ActiveMQ (_admin/admin_)
+
+`http://localhost:8161/admin/`
+
+View Spring-Boot App
+
+`http://localhost:9003/info`
+
+View Hawtio
+
+`http://localhost:8090/hawtio/welcome`
+
+
+###Spring-Boot Execution
 
 Executes with Spring Boot
 
@@ -17,6 +46,6 @@ Start ActiveMQ and navigate to http://localhost:8161/admin/
 
 Or launch hawtio
 
-    $java -jar hawtio-app-1.4.65.jar --port 8090 
+    $java -jar hawtio-app.jar --port 8090 
 
-and navigate to http://localhost:8090/hawtio/welcome 
+and navigate to http://localhost:8090/hawtio/welcome   
