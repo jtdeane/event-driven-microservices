@@ -12,7 +12,7 @@
 
     <!-- ActiveMQ Connection Factory -->
     <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        <property name="brokerURL" value="tcp://localhost:61616" />    
+        <property name="brokerURL" value="tcp://#{ systemProperties['activemq.hostname']}:61616" />    
     </bean>
     
 	<bean id="eventIngestionQueue" class="org.apache.activemq.command.ActiveMQQueue">
