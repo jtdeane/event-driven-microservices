@@ -13,8 +13,7 @@ Assumes ActiveMQ is running on localhost
     
     java -Dactivemq.hostname=localhost -jar event-client-1.0.2.jar Leon
     
-    java -Dactivemq.hostname=localhost -jar event-client-1.0.2.jar Eldon
-    
+    java -Dactivemq.hostname=localhost -jar event-client-1.0.2.jar Eldonxs
     
 ### Docker Examples
 

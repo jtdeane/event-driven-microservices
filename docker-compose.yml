@@ -1,0 +1,41 @@
+version: '3'
+services:
+  event-ingestion:
+    image: "jtdeane/event-ingestion:latest"
+    hostname: event-ingestion
+    environment:
+     - JAVA_OPTS=-Xmx256m -Xms128m
+    depends_on:
+     - "event-broker"
+  event-audit:
+    image: "jtdeane/event-audit:latest"
+    hostname: event-audit
+    environment:
+     - JAVA_OPTS=-Xmx256m -Xms128m
+    depends_on:
+     - "event-broker"
+  event-care:
+    image: "jtdeane/event-care:latest"
+    hostname: event-care
+    environment:
+     - JAVA_OPTS=-Xmx256m -Xms128m
+    depends_on:
+     - "event-broker"
+  event-cep:
+    image: "jtdeane/event-cep:latest"
+    hostname: event-cep
+    environment:
+     - JAVA_OPTS=-Xmx256m -Xms128m
+    depends_on:
+     - "event-broker"               
+  event-broker:
+    hostname: event-broker
+    image: "rmohr/activemq:5.14.3-alpine"
+    ports:
+     - "61616:61616"
+     - "8161:8161"
+  hawtio:
+    hostname: event-ops
+    image: "indigo/hawtio"
+    ports:
+     - "8090:8090" 
