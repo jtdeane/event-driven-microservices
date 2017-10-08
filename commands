@@ -1,0 +1,53 @@
+#NO DOCKER
+
+#execute test
+java –jar ./target/event-client-1.0.2.jar
+
+#view activemq
+Open http://localhost:8161/admin/queues.jsp
+
+#view Hawtio
+java -jar hawtio-app.jar --port 8090
+
+http://localhost:8090/hawtio
+
+#Start ActiveMQ
+./activemq start
+
+#Build Demo (in each sub-project, in order)
+mvn clean install
+
+#Start Microservices
+mvn spring-boot:run -Drun.arguments="-Xmx256m,-Xms128m"
+
+#Execute Tests
+java -jar event-client-1.0.2.jar Leon
+java -jar event-client-1.0.2.jar Roy
+java -jar event-client-1.0.2.jar Eldon
+
+#DOCKER
+
+#execute test
+docker run -d -p 61616:61616 -p 8161:8161 --net=messaging-network --hostname event-broker --name event-broker rmohr/activemq:5.14.3-alpine
+
+docker run -e PATIENT='Roy' --net=messaging-network event-client:latest
+
+#view activemq
+Open http://localhost:8161/admin/queues.jsp
+
+#view hawtio
+docker run -d -p 8090:8090 --net=messaging-network indigo/hawtio:latest
+
+http://localhost:8090/hawtio
+
+#Start Demo
+docker-compose up
+
+#Portainer - Create Volume
+docker volume create portainer_data
+
+#Execute Portainer
+docker run -d -p 9999:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+
+#view Portainer
+http://localhost:9999/#/dashboard
