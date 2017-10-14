@@ -47,7 +47,7 @@ docker-compose up
 docker volume create portainer_data
 
 #Execute Portainer
-docker run -d -p 9999:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+docker run -d -p 9898:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
 
 #view Portainer
-http://localhost:9999/#/dashboard
+http://localhost:9898/#/dashboard
