@@ -49,5 +49,5 @@ docker volume create portainer_data
 #Execute Portainer
 docker run -d -p 9898:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
 
-#view Portainer
-http://localhost:9898/#/dashboard
+#View Portainer (change admin password first time)
+http://localhost:9898/#/auth
