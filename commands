@@ -1,7 +1,7 @@
 #NO DOCKER
 
 #execute test
-java –jar ./target/event-client-1.0.2.jar
+java -jar -Dactivemq.hostname=localhost event-client-1.0.2.jar
 
 #view activemq
 Open http://localhost:8161/admin/queues.jsp
@@ -21,13 +21,15 @@ mvn clean install
 mvn spring-boot:run -Drun.arguments="-Xmx256m,-Xms128m"
 
 #Execute Tests
-java -jar event-client-1.0.2.jar Leon
-java -jar event-client-1.0.2.jar Roy
-java -jar event-client-1.0.2.jar Eldon
+java -jar -Dactivemq.hostname=localhost event-client-1.0.2.jar Leon
+java -jar -Dactivemq.hostname=localhost event-client-1.0.2.jar Roy
+java -jar -Dactivemq.hostname=localhost event-client-1.0.2.jar Eldon
 
 #DOCKER
 
 #execute test
+docker network create messaging-network
+
 docker run -d -p 61616:61616 -p 8161:8161 --net=messaging-network --hostname event-broker --name event-broker rmohr/activemq:5.14.3-alpine
 
 docker run -e PATIENT='Roy' --net=messaging-network event-client:latest
@@ -40,7 +42,8 @@ docker run -d -p 8090:8090 --net=messaging-network indigo/hawtio:latest
 
 http://localhost:8090/hawtio
 
-#Start Demo
+
+#start Demo
 docker-compose up
 
 #Portainer - Create Volume
