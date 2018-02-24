@@ -27,14 +27,14 @@ java -jar -Dactivemq.hostname=localhost event-client-1.0.2.jar Eldon
 
 #DOCKER
 
-#execute test
+#Execute Test
 docker network create messaging-network
 
-docker run -d -p 61616:61616 -p 8161:8161 --net=messaging-network --hostname event-broker --name event-broker rmohr/activemq:5.14.3-alpine
+docker run -d -p 61616:61616 -p 8161:8161 --net=messaging-network --hostname event-broker --name event-broker rmohr/activemq:5.14.3-alpine
 
-docker run -e PATIENT='Roy' --net=messaging-network event-client:latest
+docker run -e PATIENT='Roy' --net=messaging-network jtdeane/event-client:latest
 
-#view activemq
+#View activemq
 Open http://localhost:8161/admin/queues.jsp
 
 #view hawtio
@@ -42,9 +42,6 @@ docker run -d -p 8090:8090 --net=messaging-network indigo/hawtio:latest
 
 http://localhost:8090/hawtio
 
-
-#start Demo
-docker-compose up
 
 #Portainer - Create Volume
 docker volume create portainer_data
@@ -54,3 +51,15 @@ docker run -d -p 9898:9000 -v /var/run/docker.sock:/var/run/docker.sock -v porta
 
 #View Portainer (change admin password first time)
 http://localhost:9898/#/auth
+
+
+#Start Demo
+docker-compose up
+
+#Capture Docker Compose Network
+docker network ls
+
+#set docker compose network e.g. microservices_default
+docker run -e PATIENT='Leon' --net=microservices_default jtdeane/event-client:latest
+docker run -e PATIENT='Roy' --net=microservices_default jtdeane/event-client:latest
+docker run -e PATIENT='Eldon' --net=microservices_default jtdeane/event-client:latest
