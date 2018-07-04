@@ -13,7 +13,8 @@ import org.apache.camel.RoutesBuilder;
 @Component
 public class EventIngestionRouteBuilder extends RouteBuilder implements RoutesBuilder {
 
-    public void configure() {
+    @SuppressWarnings("deprecation")
+	public void configure() {
     	
     	/*
     	 * Route errors to DLQ after one retry and one second delay
@@ -33,7 +34,8 @@ public class EventIngestionRouteBuilder extends RouteBuilder implements RoutesBu
     		otherwise().
     			to("activemq:event.outpatient").
 			end().
-    	to("activemq:event.audit"); 
+    	to("activemq:event.audit");
+    	
     	
     	/*
     	 * Content Based Routing V2 - Inpatient-Outpatient Events with Throttle
@@ -59,6 +61,7 @@ public class EventIngestionRouteBuilder extends RouteBuilder implements RoutesBu
     	 * Content Based Routing V3 - Inpatient-Outpatient Events with circuit breaker
     	 * http://camel.apache.org/jsonpath.html
     	 * http://camel.apache.org/load-balancer.html
+    	 * Requires Mock SaaS Running - http4://localhost:8080/event
     	 * After two failures circuit breaker goes into Open State; after five
     	 * seconds will try again. In Open State messages go to DLQ.
     	 

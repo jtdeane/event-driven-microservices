@@ -1,7 +1,7 @@
 event-audit-router
 =======================
 
-Built with Java 8+, Apache Camel (2.19.2) and Spring Boot (1.5.6.RELEASE)
+Built with Java 8+, Apache Camel (2.22.0) and Spring Boot (2.0.3.RELEASE)
 
 Tested with JUnit (4.11)
 
@@ -25,7 +25,7 @@ View ActiveMQ (_admin/admin_)
 
 View Spring-Boot App
 
-`http://localhost:9002/info`
+`http://localhost:9002/actuator/info`
 
 View Hawtio
 
@@ -42,9 +42,11 @@ Runs against ActiveMQ (5.14.0) using JMeter (2.13); requires activemq-all-5.14.0
 
 >Message content can viewed in the ActiveMQ or hawtio Web Consoles.
 
-Start ActiveMQ and navigate to http://localhost:8161/admin/
+Navigate to http://localhost:8161/admin/
 
-Or launch hawtio
+OR 
+
+launch hawtio
 
     $java -jar hawtio-app.jar --port 8090 
 

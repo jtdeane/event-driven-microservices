@@ -31,7 +31,7 @@ public class EventController {
 		
 		String message = "Processing Event " + UUID.randomUUID();
 		
-		logger.debug(message);
+		logger.info(message);
 		
 	    response.setContentType("text/plain");
 	    response.setCharacterEncoding("UTF-8");
